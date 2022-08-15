@@ -56,3 +56,15 @@ struct PersistenceController {
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
+
+
+extension Todo_Item {
+    override public func awakeFromInsert() {
+        setPrimitiveValue(Date(), forKey: "created_at")
+    }
+    override public func willSave() {
+        if (self.updated_at ?? Date()).timeIntervalSinceNow < -1 {
+            self.updated_at = Date()
+        }
+    }
+}

@@ -21,6 +21,14 @@
 		EC055CD52897D93500B82D97 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC055CA72897D93200B82D97 /* Persistence.swift */; };
 		EC055CD62897D93500B82D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC055CA82897D93500B82D97 /* Assets.xcassets */; };
 		EC055CD72897D93500B82D97 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC055CA82897D93500B82D97 /* Assets.xcassets */; };
+		EC0BE68B28A9BCC900A1836E /* Todo List View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0BE68A28A9BCC900A1836E /* Todo List View.swift */; };
+		EC0BE68C28A9BCC900A1836E /* Todo List View.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0BE68A28A9BCC900A1836E /* Todo List View.swift */; };
+		EC0BE68E28A9BDF600A1836E /* Create Todo Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0BE68D28A9BDF600A1836E /* Create Todo Item.swift */; };
+		EC0BE68F28A9BDF600A1836E /* Create Todo Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0BE68D28A9BDF600A1836E /* Create Todo Item.swift */; };
+		ECA2158628A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
+		ECA2158728A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
+		ECA2158828A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
+		ECA2158928A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +63,9 @@
 		EC055CC62897D93500B82D97 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC055CCA2897D93500B82D97 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		EC055CCC2897D93500B82D97 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		EC0BE68A28A9BCC900A1836E /* Todo List View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo List View.swift"; sourceTree = "<group>"; };
+		EC0BE68D28A9BDF600A1836E /* Create Todo Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Create Todo Item.swift"; sourceTree = "<group>"; };
+		ECA2158528A8C7A400C41862 /* Todo List Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo List Item.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +115,10 @@
 			isa = PBXGroup;
 			children = (
 				EC055CA52897D93200B82D97 /* Todo_ListApp.swift */,
+				ECA2158528A8C7A400C41862 /* Todo List Item.swift */,
 				EC055CA62897D93200B82D97 /* ContentView.swift */,
+				EC0BE68D28A9BDF600A1836E /* Create Todo Item.swift */,
+				EC0BE68A28A9BCC900A1836E /* Todo List View.swift */,
 				EC055CA72897D93200B82D97 /* Persistence.swift */,
 				EC055CA82897D93500B82D97 /* Assets.xcassets */,
 				EC055CA32897D93200B82D97 /* Todo_List.xcdatamodeld */,
@@ -307,9 +321,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA2158628A8C7A400C41862 /* Todo List Item.swift in Sources */,
 				EC055CCE2897D93500B82D97 /* Todo_List.xcdatamodeld in Sources */,
 				EC055CD42897D93500B82D97 /* Persistence.swift in Sources */,
+				EC0BE68E28A9BDF600A1836E /* Create Todo Item.swift in Sources */,
 				EC055CD02897D93500B82D97 /* Todo_ListApp.swift in Sources */,
+				EC0BE68B28A9BCC900A1836E /* Todo List View.swift in Sources */,
 				EC055CD22897D93500B82D97 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,9 +335,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA2158728A8C7A400C41862 /* Todo List Item.swift in Sources */,
 				EC055CCF2897D93500B82D97 /* Todo_List.xcdatamodeld in Sources */,
 				EC055CD52897D93500B82D97 /* Persistence.swift in Sources */,
+				EC0BE68F28A9BDF600A1836E /* Create Todo Item.swift in Sources */,
 				EC055CD12897D93500B82D97 /* Todo_ListApp.swift in Sources */,
+				EC0BE68C28A9BCC900A1836E /* Todo List View.swift in Sources */,
 				EC055CD32897D93500B82D97 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA2158828A8C7A400C41862 /* Todo List Item.swift in Sources */,
 				EC055CC12897D93500B82D97 /* Tests_iOSLaunchTests.swift in Sources */,
 				EC055CBF2897D93500B82D97 /* Tests_iOS.swift in Sources */,
 			);
@@ -338,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA2158928A8C7A400C41862 /* Todo List Item.swift in Sources */,
 				EC055CCD2897D93500B82D97 /* Tests_macOSLaunchTests.swift in Sources */,
 				EC055CCB2897D93500B82D97 /* Tests_macOS.swift in Sources */,
 			);
@@ -475,6 +497,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UY22G4BA5Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -504,6 +527,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UY22G4BA5Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

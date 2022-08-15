@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct Todo_ListApp: App {
     let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             ContentView()
