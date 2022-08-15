@@ -63,7 +63,7 @@ extension Todo_Item {
         setPrimitiveValue(Date(), forKey: "created_at")
     }
     override public func willSave() {
-        if (self.updated_at ?? Date()).timeIntervalSinceNow < -1 {
+        if (self.updated_at ?? Date(timeIntervalSince1970:  0)).timeIntervalSinceNow < -1 {
             self.updated_at = Date()
         }
     }

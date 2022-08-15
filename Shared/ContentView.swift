@@ -8,21 +8,13 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View {
-    enum TodoListStatus {
-        case complete
-        case in_progress
-    }
-    @State private var selectedStatus: TodoListStatus = .in_progress
-    private func todo_list_predicate(status: TodoListStatus) -> String {
-        switch status {
-        case .in_progress:
-            return "completed_at == nil"
-        case .complete:
-            return "completed_at != nil"
-        }
-    }
+enum TodoListStatus {
+    case complete
+    case in_progress
+}
 
+struct ContentView: View {
+    @State private var selectedStatus: TodoListStatus = .in_progress
     var body: some View {
         VStack {
             Picker("Status", selection: $selectedStatus) {
@@ -30,8 +22,7 @@ struct ContentView: View {
                 Text("Complete").tag(TodoListStatus.complete)
             }
             .pickerStyle(.segmented)
-            Todo_List_View(predicate: todo_list_predicate(status: selectedStatus))
-            Create_Todo_Item()
+            Todo_List_View(status: selectedStatus, parent_todo_item: nil)
         }
     }
 }

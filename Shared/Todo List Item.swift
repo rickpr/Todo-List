@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct Todo_List_Item: View {
-    @State private var todo_item: Todo_Item
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var status: TodoListStatus
+    @State private var todo_item: Todo_Item
 
-    init(todo_item: Todo_Item) {
+    init(status: TodoListStatus, todo_item: Todo_Item) {
+        self.status = status
         self.todo_item = todo_item
     }
     
     var body: some View {
-        NavigationLink(destination: EmptyView()) {
-            Text(todo_item.text ?? "")
-        }
+        NavigationLink(
+            destination: Todo_List_View(status: status, parent_todo_item: todo_item)
+        ) { Text(todo_item.text ?? "") }
         .swipeActions() {
             Button {
                 todo_item.completed_at = Date()
@@ -53,6 +55,6 @@ struct Todo_List_Item: View {
 
 struct Todo_List_Item_Previews: PreviewProvider {
     static var previews: some View {
-        Todo_List_Item(todo_item: Todo_Item())
+        Todo_List_Item(status: TodoListStatus.in_progress, todo_item: Todo_Item())
     }
 }

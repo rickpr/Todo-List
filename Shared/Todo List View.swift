@@ -9,25 +9,43 @@ import SwiftUI
 
 struct Todo_List_View: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @State private var status: TodoListStatus
+    @State private var parent_todo_item: Todo_Item?
     @FetchRequest var todo_items: FetchedResults<Todo_Item>
-    init(predicate: String) {
+    
+    init(status: TodoListStatus, parent_todo_item: Todo_Item?) {
+        _status = State(initialValue: status)
+        _parent_todo_item = State(initialValue: parent_todo_item)
+        var completed_predicate = ""
+        switch status {
+        case .in_progress:
+            completed_predicate = "completed_at == nil"
+        case .complete:
+            completed_predicate = "completed_at != nil"
+        }
+        let predicate = (parent_todo_item != nil) ?
+        NSPredicate(format: "\(completed_predicate) && parent_todo_item == %@", parent_todo_item!) :
+        NSPredicate(format: "\(completed_predicate) && parent_todo_item == nil")
         _todo_items = FetchRequest<Todo_Item> (
             sortDescriptors: [
                 NSSortDescriptor(
                     keyPath: \Todo_Item.created_at, ascending: true
                 )
             ],
-            predicate: NSPredicate(format: predicate),
+            predicate: predicate,
             animation: .default)
     }
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(todo_items) { todo_item in
-                    Todo_List_Item(todo_item: todo_item)
+            VStack {
+                List {
+                    ForEach(todo_items) { todo_item in
+                        Todo_List_Item(status: status, todo_item: todo_item)
+                    }
+                    .onDelete(perform: deleteTodoItems)
                 }
-                .onDelete(perform: deleteTodoItems)
+                Create_Todo_Item(parent_todo_item: parent_todo_item)
             }
         }
     }
@@ -48,10 +66,11 @@ struct Todo_List_View: View {
             }
         }
     }
+    
 }
 
 struct Todo_List_View_Previews: PreviewProvider {
     static var previews: some View {
-        Todo_List_View(predicate: "completed_at == nil")
+        Todo_List_View(status: TodoListStatus.in_progress, parent_todo_item: nil)
     }
 }

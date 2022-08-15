@@ -9,7 +9,11 @@ import SwiftUI
 
 struct Create_Todo_Item: View {
     @State private var todo_item_text: String = ""
+    @State private var parent_todo_item: Todo_Item?
     @Environment(\.managedObjectContext) private var viewContext
+    init(parent_todo_item: Todo_Item?) {
+        _parent_todo_item = State(initialValue: parent_todo_item)
+    }
     var body: some View {
         HStack {
             TextField(
@@ -30,6 +34,7 @@ struct Create_Todo_Item: View {
             newTodoItem.text = todo_item_text
             newTodoItem.created_at = Date()
             newTodoItem.updated_at = Date()
+            newTodoItem.parent_todo_item = parent_todo_item
             
             do {
                 try viewContext.save()
@@ -48,6 +53,6 @@ struct Create_Todo_Item: View {
 
 struct Create_Todo_Item_Previews: PreviewProvider {
     static var previews: some View {
-        Create_Todo_Item()
+        Create_Todo_Item(parent_todo_item: nil)
     }
 }
