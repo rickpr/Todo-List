@@ -37,16 +37,14 @@ struct Todo_List_View: View {
     }
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    ForEach(todo_items) { todo_item in
-                        Todo_List_Item(status: status, todo_item: todo_item)
-                    }
-                    .onDelete(perform: deleteTodoItems)
+        VStack {
+            List {
+                ForEach(todo_items) { todo_item in
+                    Todo_List_Item(status: status, todo_item: todo_item)
                 }
-                Create_Todo_Item(parent_todo_item: parent_todo_item)
+                .onDelete(perform: deleteTodoItems)
             }
+            Create_Todo_Item(parent_todo_item: parent_todo_item)
         }
     }
     

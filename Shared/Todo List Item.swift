@@ -20,7 +20,16 @@ struct Todo_List_Item: View {
     var body: some View {
         NavigationLink(
             destination: Todo_List_View(status: status, parent_todo_item: todo_item)
-        ) { Text(todo_item.text ?? "") }
+        ) {
+            VStack(alignment: .leading) {
+                Text(todo_item.text ?? "")
+                    .font(.headline.bold())
+                Text(todo_item.created_at?.ISO8601Format() ?? "")
+                    .font(.caption)
+                    .foregroundColor(Color(UIColor.secondaryLabel))
+            }
+            
+        }
         .swipeActions() {
             Button {
                 todo_item.completed_at = Date()

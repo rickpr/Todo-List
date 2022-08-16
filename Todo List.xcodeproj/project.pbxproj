@@ -29,6 +29,10 @@
 		ECA2158728A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
 		ECA2158828A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
 		ECA2158928A8C7A400C41862 /* Todo List Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2158528A8C7A400C41862 /* Todo List Item.swift */; };
+		ECDCA01E28ABA5A200C534EC /* Main Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCA01D28ABA5A200C534EC /* Main Page.swift */; };
+		ECDCA01F28ABA5A200C534EC /* Main Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCA01D28ABA5A200C534EC /* Main Page.swift */; };
+		ECDCA02128ABA5D900C534EC /* Splash Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCA02028ABA5D900C534EC /* Splash Page.swift */; };
+		ECDCA02228ABA5D900C534EC /* Splash Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDCA02028ABA5D900C534EC /* Splash Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +70,8 @@
 		EC0BE68A28A9BCC900A1836E /* Todo List View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo List View.swift"; sourceTree = "<group>"; };
 		EC0BE68D28A9BDF600A1836E /* Create Todo Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Create Todo Item.swift"; sourceTree = "<group>"; };
 		ECA2158528A8C7A400C41862 /* Todo List Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Todo List Item.swift"; sourceTree = "<group>"; };
+		ECDCA01D28ABA5A200C534EC /* Main Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Main Page.swift"; sourceTree = "<group>"; };
+		ECDCA02028ABA5D900C534EC /* Splash Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Splash Page.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,8 @@
 				EC055CA52897D93200B82D97 /* Todo_ListApp.swift */,
 				ECA2158528A8C7A400C41862 /* Todo List Item.swift */,
 				EC055CA62897D93200B82D97 /* ContentView.swift */,
+				ECDCA02028ABA5D900C534EC /* Splash Page.swift */,
+				ECDCA01D28ABA5A200C534EC /* Main Page.swift */,
 				EC0BE68D28A9BDF600A1836E /* Create Todo Item.swift */,
 				EC0BE68A28A9BCC900A1836E /* Todo List View.swift */,
 				EC055CA72897D93200B82D97 /* Persistence.swift */,
@@ -322,9 +330,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECA2158628A8C7A400C41862 /* Todo List Item.swift in Sources */,
+				ECDCA02128ABA5D900C534EC /* Splash Page.swift in Sources */,
 				EC055CCE2897D93500B82D97 /* Todo_List.xcdatamodeld in Sources */,
 				EC055CD42897D93500B82D97 /* Persistence.swift in Sources */,
 				EC0BE68E28A9BDF600A1836E /* Create Todo Item.swift in Sources */,
+				ECDCA01E28ABA5A200C534EC /* Main Page.swift in Sources */,
 				EC055CD02897D93500B82D97 /* Todo_ListApp.swift in Sources */,
 				EC0BE68B28A9BCC900A1836E /* Todo List View.swift in Sources */,
 				EC055CD22897D93500B82D97 /* ContentView.swift in Sources */,
@@ -336,9 +346,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECA2158728A8C7A400C41862 /* Todo List Item.swift in Sources */,
+				ECDCA02228ABA5D900C534EC /* Splash Page.swift in Sources */,
 				EC055CCF2897D93500B82D97 /* Todo_List.xcdatamodeld in Sources */,
 				EC055CD52897D93500B82D97 /* Persistence.swift in Sources */,
 				EC0BE68F28A9BDF600A1836E /* Create Todo Item.swift in Sources */,
+				ECDCA01F28ABA5A200C534EC /* Main Page.swift in Sources */,
 				EC055CD12897D93500B82D97 /* Todo_ListApp.swift in Sources */,
 				EC0BE68C28A9BCC900A1836E /* Todo List View.swift in Sources */,
 				EC055CD32897D93500B82D97 /* ContentView.swift in Sources */,
