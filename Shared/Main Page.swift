@@ -24,7 +24,8 @@ struct Main_Page: View {
             NavigationView {
                 Todo_List_View(status: selectedStatus, parent_todo_item: nil)
             }
-        }.navigationBarHidden(true)
+        }
+        .navigationBarHidden(true)
     }
 }
 

@@ -22,7 +22,7 @@ struct Todo_List_Item: View {
             destination: Todo_List_View(status: status, parent_todo_item: todo_item)
         ) {
             VStack(alignment: .leading) {
-                Text(todo_item.text ?? "")
+                Text(todo_item.title ?? "")
                     .font(.headline.bold())
                 Text(todo_item.created_at?.ISO8601Format() ?? "")
                     .font(.caption)
@@ -38,6 +38,8 @@ struct Todo_List_Item: View {
                 Image(systemName: "checkmark.circle")
             }
             .tint(.green)
+        }
+        .swipeActions(edge: .leading) {
             Button(role: .destructive) {
                 viewContext.delete(todo_item)
                 saveItem()

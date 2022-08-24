@@ -11,11 +11,17 @@ struct Todo_List_View: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var status: TodoListStatus
     @State private var parent_todo_item: Todo_Item?
+    
+    @State private var creating: Bool = false
+    @State private var editing: Bool = false
+    
     @FetchRequest var todo_items: FetchedResults<Todo_Item>
     
     init(status: TodoListStatus, parent_todo_item: Todo_Item?) {
         _status = State(initialValue: status)
         _parent_todo_item = State(initialValue: parent_todo_item)
+        
+        // TODO: Figure out how to break this out into a function.
         var completed_predicate = ""
         switch status {
         case .in_progress:
@@ -37,14 +43,42 @@ struct Todo_List_View: View {
     }
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(todo_items) { todo_item in
-                    Todo_List_Item(status: status, todo_item: todo_item)
+        ZStack(alignment: .bottomTrailing) {
+            VStack {
+                if parent_todo_item != nil && parent_todo_item!.body != "" {
+                    Text(parent_todo_item!.body!)
+                } else {
+                    EmptyView()
                 }
-                .onDelete(perform: deleteTodoItems)
+                List {
+                    ForEach(todo_items) { todo_item in
+                        Todo_List_Item(status: status, todo_item: todo_item)
+                    }
+                    .onDelete(perform: deleteTodoItems)
+                }
             }
-            Create_Todo_Item(parent_todo_item: parent_todo_item)
+            VStack(spacing: 5) {
+                if parent_todo_item != nil {
+                    Button {
+                        editing.toggle()
+                    } label: {
+                        Image(systemName: "pencil.circle.fill").font(.system(size: 48)).foregroundColor(.yellow)
+                    }
+                    .sheet(isPresented: $editing) {
+                        Edit_Todo_Item(todo_item: parent_todo_item!)
+                    }
+                } else {
+                    EmptyView()
+                }
+                Button {
+                    creating.toggle()
+                } label: {
+                    Image(systemName: "plus.circle.fill").font(.system(size: 48))
+                }
+                .sheet(isPresented: $creating) {
+                    Create_Todo_Item(parent_todo_item: parent_todo_item)
+                }
+            }
         }
     }
     

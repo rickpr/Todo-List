@@ -1,24 +1,25 @@
 //
-//  Create Todo Item.swift
+//  Edit Todo Item.swift
 //  Todo List
 //
-//  Created by fdisk on 8/14/22.
+//  Created by fdisk on 8/24/22.
 //
 
 import SwiftUI
 
-var INITIAL_BODY: String = "An optional, extended description."
-
-struct Create_Todo_Item: View {
-    @State private var todo_item_title: String = ""
-    @State private var todo_item_body: String = INITIAL_BODY
-    @State private var parent_todo_item: Todo_Item?
+struct Edit_Todo_Item: View {
+    @State private var todo_item: Todo_Item
+    @State private var todo_item_title: String
+    @State private var todo_item_body: String
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     
-    init(parent_todo_item: Todo_Item?) {
-        _parent_todo_item = State(initialValue: parent_todo_item)
+    init(todo_item: Todo_Item) {
+        _todo_item = State(initialValue: todo_item)
+        _todo_item_title = State(initialValue: todo_item.title ?? "")
+        _todo_item_body = State(initialValue: todo_item.body ?? "")
     }
+    
     var body: some View {
         VStack {
             HStack {
@@ -29,7 +30,7 @@ struct Create_Todo_Item: View {
                 }
                 Spacer()
                 Button {
-                    addItem()
+                    saveItem()
                     dismiss()
                 } label: {
                     Text("Save").padding()
@@ -49,15 +50,10 @@ struct Create_Todo_Item: View {
         }
     }
     
-    private func addItem() {
+    private func saveItem() {
         withAnimation {
-            let newTodoItem = Todo_Item(context: viewContext)
-            newTodoItem.title = todo_item_title
-            if todo_item_body != INITIAL_BODY {
-                newTodoItem.body = todo_item_body
-            }
-            newTodoItem.parent_todo_item = parent_todo_item
-            
+            todo_item.title = todo_item_title
+            todo_item.body = todo_item_body
             do {
                 try viewContext.save()
             } catch {
@@ -72,8 +68,8 @@ struct Create_Todo_Item: View {
     }
 }
 
-struct Create_Todo_Item_Previews: PreviewProvider {
+struct Edit_Todo_Item_Previews: PreviewProvider {
     static var previews: some View {
-        Create_Todo_Item(parent_todo_item: nil)
+        Edit_Todo_Item(todo_item: Todo_Item())
     }
 }

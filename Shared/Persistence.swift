@@ -17,7 +17,7 @@ struct PersistenceController {
             let newTodoItem = Todo_Item(context: viewContext)
             newTodoItem.created_at = Date()
             newTodoItem.updated_at = Date()
-            newTodoItem.text = "Todo Item \(i)"
+            newTodoItem.title = "Todo Item \(i)"
         }
         do {
             try viewContext.save()
