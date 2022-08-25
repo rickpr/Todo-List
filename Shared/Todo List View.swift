@@ -20,8 +20,67 @@ struct Todo_List_View: View {
     init(status: TodoListStatus, parent_todo_item: Todo_Item?) {
         _status = State(initialValue: status)
         _parent_todo_item = State(initialValue: parent_todo_item)
+        _todo_items = Todo_List_View.get_todo_items(parent_todo_item: parent_todo_item, status: status)
+    }
+    
+    private var description_and_list: some View {
+        VStack {
+            if parent_todo_item != nil && parent_todo_item!.body != "" {
+                Text(parent_todo_item!.body!)
+            } else {
+                EmptyView()
+            }
+            List {
+                ForEach(todo_items) { todo_item in
+                    Todo_List_Item(status: status, todo_item: todo_item)
+                }
+                .onDelete(perform: delete_todo_items)
+            }
+        }
+    }
+    
+    private var edit_button: some View {
+        Button {
+            editing.toggle()
+        } label: {
+            Image(systemName: "pencil.circle.fill")
+                .font(.system(size: 48))
+                .foregroundColor(.yellow)
+        }
+        .sheet(isPresented: $editing) {
+            Edit_Todo_Item(todo_item: parent_todo_item!)
+        }
+    }
+    
+    private var add_button: some View {
+        Button {
+            creating.toggle()
+        } label: {
+            Image(systemName: "plus.circle.fill")
+                .font(.system(size: 48))
+        }
+        .sheet(isPresented: $creating) {
+            Create_Todo_Item(parent_todo_item: parent_todo_item)
+        }
         
-        // TODO: Figure out how to break this out into a function.
+    }
+    
+    var body: some View {
+        ZStack(alignment: .bottomTrailing) {
+            description_and_list
+            VStack(spacing: 5) {
+                if parent_todo_item != nil {
+                    edit_button
+                }
+                add_button
+            }
+        }
+    }
+    
+    private static func get_todo_items(
+        parent_todo_item: Todo_Item?,
+        status: TodoListStatus
+    ) -> FetchRequest<Todo_Item> {
         var completed_predicate = ""
         switch status {
         case .in_progress:
@@ -32,7 +91,7 @@ struct Todo_List_View: View {
         let predicate = (parent_todo_item != nil) ?
         NSPredicate(format: "\(completed_predicate) && parent_todo_item == %@", parent_todo_item!) :
         NSPredicate(format: "\(completed_predicate) && parent_todo_item == nil")
-        _todo_items = FetchRequest<Todo_Item> (
+        return FetchRequest<Todo_Item> (
             sortDescriptors: [
                 NSSortDescriptor(
                     keyPath: \Todo_Item.created_at, ascending: true
@@ -42,47 +101,7 @@ struct Todo_List_View: View {
             animation: .default)
     }
     
-    var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            VStack {
-                if parent_todo_item != nil && parent_todo_item!.body != "" {
-                    Text(parent_todo_item!.body!)
-                } else {
-                    EmptyView()
-                }
-                List {
-                    ForEach(todo_items) { todo_item in
-                        Todo_List_Item(status: status, todo_item: todo_item)
-                    }
-                    .onDelete(perform: deleteTodoItems)
-                }
-            }
-            VStack(spacing: 5) {
-                if parent_todo_item != nil {
-                    Button {
-                        editing.toggle()
-                    } label: {
-                        Image(systemName: "pencil.circle.fill").font(.system(size: 48)).foregroundColor(.yellow)
-                    }
-                    .sheet(isPresented: $editing) {
-                        Edit_Todo_Item(todo_item: parent_todo_item!)
-                    }
-                } else {
-                    EmptyView()
-                }
-                Button {
-                    creating.toggle()
-                } label: {
-                    Image(systemName: "plus.circle.fill").font(.system(size: 48))
-                }
-                .sheet(isPresented: $creating) {
-                    Create_Todo_Item(parent_todo_item: parent_todo_item)
-                }
-            }
-        }
-    }
-    
-    private func deleteTodoItems(offsets: IndexSet) {
+    private func delete_todo_items(offsets: IndexSet) {
         withAnimation {
             offsets.map {
                 todo_items[$0]

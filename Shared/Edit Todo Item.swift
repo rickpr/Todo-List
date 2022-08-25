@@ -30,7 +30,7 @@ struct Edit_Todo_Item: View {
                 }
                 Spacer()
                 Button {
-                    saveItem()
+                    save_item()
                     dismiss()
                 } label: {
                     Text("Save").padding()
@@ -50,7 +50,7 @@ struct Edit_Todo_Item: View {
         }
     }
     
-    private func saveItem() {
+    private func save_item() {
         withAnimation {
             todo_item.title = todo_item_title
             todo_item.body = todo_item_body
