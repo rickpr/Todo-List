@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-var INITIAL_BODY: String = "An optional, extended description."
 
 struct Create_Todo_Item: View {
     @State private var todo_item_title: String = ""
-    @State private var todo_item_body: String = INITIAL_BODY
     @State private var parent_todo_item: Todo_Item?
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
@@ -42,10 +40,6 @@ struct Create_Todo_Item: View {
                 text: $todo_item_title
             )
             .padding()
-            TextEditor(
-                text: $todo_item_body
-            )
-            .padding()
         }
     }
     
@@ -53,9 +47,6 @@ struct Create_Todo_Item: View {
         withAnimation {
             let newTodoItem = Todo_Item(context: viewContext)
             newTodoItem.title = todo_item_title
-            if todo_item_body != INITIAL_BODY {
-                newTodoItem.body = todo_item_body
-            }
             newTodoItem.parent_todo_item = parent_todo_item
             
             do {

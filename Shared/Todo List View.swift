@@ -25,11 +25,6 @@ struct Todo_List_View: View {
     
     private var description_and_list: some View {
         VStack {
-            if parent_todo_item != nil && parent_todo_item!.body != "" {
-                Text(parent_todo_item!.body!)
-            } else {
-                EmptyView()
-            }
             List {
                 ForEach(todo_items) { todo_item in
                     Todo_List_Item(status: status, todo_item: todo_item)

@@ -10,14 +10,12 @@ import SwiftUI
 struct Edit_Todo_Item: View {
     @State private var todo_item: Todo_Item
     @State private var todo_item_title: String
-    @State private var todo_item_body: String
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.dismiss) var dismiss
     
     init(todo_item: Todo_Item) {
         _todo_item = State(initialValue: todo_item)
         _todo_item_title = State(initialValue: todo_item.title ?? "")
-        _todo_item_body = State(initialValue: todo_item.body ?? "")
     }
     
     var body: some View {
@@ -43,17 +41,12 @@ struct Edit_Todo_Item: View {
                 text: $todo_item_title
             )
             .padding()
-            TextEditor(
-                text: $todo_item_body
-            )
-            .padding()
         }
     }
     
     private func save_item() {
         withAnimation {
             todo_item.title = todo_item_title
-            todo_item.body = todo_item_body
             do {
                 try viewContext.save()
             } catch {
